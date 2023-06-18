@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import TextInput from './components/textbox';
+import Output from './components/output';
+import "./App.css";
+import Navbar from './components/header';
+import Footer from './components/footer';
 
 function App() {
+  const [processedTextArray, setProcessedTextArray] = useState([]);
+
+  const handleTextSubmit = (textArray) => {
+    setProcessedTextArray(textArray);
+  };
+
   return (
-    <div className="App">
+    <div className="App bg-white text-black dark:bg-slate-900 dark:text-white text-lg">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      <Navbar/>
+      <main className=' justify-center gap-11 align-middle col-auto md:flex'>
+        <TextInput onSubmit={handleTextSubmit} />
+        <Output textArray={processedTextArray} />
+        </main>
+        <Footer />
     </div>
   );
 }
